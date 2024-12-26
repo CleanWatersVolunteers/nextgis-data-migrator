@@ -7,4 +7,4 @@
 
 ## выполнение 
 крон запускается каждые 2 часа, изменить частоту можно в `.github/workflows/migrate-data.yaml`
-можно запустить вне крона: Actions -> Migrate Data (слева) -> Run workflow
+<br>можно запустить вне крона: Actions -> Migrate Data (слева) -> Run workflow
