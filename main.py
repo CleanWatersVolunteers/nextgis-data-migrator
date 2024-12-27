@@ -84,25 +84,25 @@ def fetch_and_process_bird_data(url):
             info_source = properties.get('source')
             discovered_at = properties.get('dt_auto')
             priority = properties.get('priority')
-            captured = "captured" in (properties.get('comment', "").lower())
+            comment = properties.get('comment')
 
             # Construct the UPSERT query
             upsert_query = """
             INSERT INTO bird (longitude, latitude, status, info_source, 
-                              discovered_at, priority, captured)
+                              discovered_at, priority, comment)
             VALUES (%s, %s, %s, %s, %s, %s, %s)
             ON CONFLICT (latitude, longitude) 
             DO UPDATE SET
                 status = EXCLUDED.status,
                 info_source = EXCLUDED.info_source,
                 priority = EXCLUDED.priority,
-                captured = EXCLUDED.captured,
+                comment = EXCLUDED.comment,
                 updated_at = now();
             """
 
             # Execute the query
             cursor.execute(upsert_query, (longitude, latitude, status, info_source,
-                                          discovered_at, priority, captured))
+                                          discovered_at, priority, comment))
 
         conn.commit()
         print(f"Total Птицы features processed: {len(features)}\n")
