@@ -1,8 +1,8 @@
 name: Migrate Data
 
 on:
-  schedule:
-    - cron: "0,30 3-20 * * *" # every 30 mins, since 6-23, moscow timezone
+  # schedule:
+  #   - cron: "0,30 3-20 * * *" # every 30 mins, since 6-23, moscow timezone
   workflow_dispatch:
 
 jobs:
